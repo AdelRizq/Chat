@@ -1,8 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chat/widgets/chat/new_message.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../widgets/chat/messages.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -42,33 +43,15 @@ class ChatScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: StreamBuilder(
-        stream: Firestore.instance
-            .collection("chats/GqaDnWXX4iAd8QP5TfGf/messages")
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          }
-
-          final documents = snapshot.data.documents;
-          return ListView.builder(
-            itemCount: documents.length,
-            itemBuilder: (ctx, index) => Container(
-              child: Text(documents[index]['text']),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: Messages(),
             ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Firestore.instance
-              .collection("chats/GqaDnWXX4iAd8QP5TfGf/messages")
-              .add({
-            'text': "This was added by adel by clicking",
-          });
-        },
+            NewMessage(),
+          ],
+        ),
       ),
     );
   }
