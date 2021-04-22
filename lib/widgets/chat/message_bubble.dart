@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble(this._message, this._isCurrentUser, {this.key});
-  final String _message;
-  final bool _isCurrentUser;
+  MessageBubble(this._message, this._isCurrentUser, this._username, {this.key});
+
   final key;
+  final String _message;
+  final String _username;
+  final bool _isCurrentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +31,27 @@ class MessageBubble extends StatelessWidget {
           width: 180,
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
           margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          child: Text(
-            _message,
-            style: TextStyle(
-              // color: Theme.of(context).accentTextTheme.headline1.color,),
-              color: _isCurrentUser ? Colors.white : Colors.white,
-              fontSize: 16,
-            ),
+          child: Column(
+            crossAxisAlignment: _isCurrentUser
+                ? CrossAxisAlignment.end
+                : CrossAxisAlignment.start,
+            children: [
+              Text(
+                _username,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: _isCurrentUser ? Colors.white : Colors.white,
+                ),
+              ),
+              Text(
+                _message,
+                style: TextStyle(
+                  // color: Theme.of(context).accentTextTheme.headline1.color,),
+                  color: _isCurrentUser ? Colors.white : Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
           ),
         ),
       ],
