@@ -7,23 +7,33 @@ class UserNameField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      key: ValueKey("username"),
-      validator: (username) {
-        if (username.isEmpty) return "Please enter a username";
-
-        if (username.length < 3) {
-          return "Must be 3 characters at least";
-        }
-
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: "Username",
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColorLight,
+        borderRadius: new BorderRadius.circular(10.0),
       ),
-      onSaved: (name) {
-        _setUserName(name);
-      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: TextFormField(
+          key: ValueKey("username"),
+          validator: (username) {
+            if (username.isEmpty) return "Please enter a username";
+
+            if (username.length < 3) {
+              return "Must be 3 characters at least";
+            }
+
+            return null;
+          },
+          decoration: InputDecoration(
+            labelText: "Username",
+            border: InputBorder.none,
+          ),
+          onSaved: (name) {
+            _setUserName(name);
+          },
+        ),
+      ),
     );
   }
 }
