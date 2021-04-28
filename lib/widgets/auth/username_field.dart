@@ -15,6 +15,9 @@ class UserNameField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextFormField(
+          autocorrect: true,
+          enableSuggestions: false,
+          textCapitalization: TextCapitalization.words,
           key: ValueKey("username"),
           validator: (username) {
             if (username.isEmpty) return "Please enter a username";

@@ -15,6 +15,9 @@ class EmailField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextFormField(
+          autocorrect: false,
+          enableSuggestions: false,
+          textCapitalization: TextCapitalization.none,
           key: ValueKey("email"),
           validator: (email) {
             if (email.isEmpty) return "Please enter an email";
