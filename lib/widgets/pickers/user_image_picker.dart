@@ -46,7 +46,11 @@ class _UserImagePickerState extends State<UserImagePicker> {
             },
             child: Row(
               children: [
-                const Icon(Icons.camera_alt),
+                Icon(
+                  Icons.camera_alt,
+                  color: Theme.of(context).primaryColor,
+                ),
+                const SizedBox(width: 5),
                 const Text('Camera'),
               ],
             ),
@@ -58,7 +62,10 @@ class _UserImagePickerState extends State<UserImagePicker> {
             },
             child: Row(
               children: [
-                const Icon(Icons.image),
+                Icon(
+                  Icons.image,
+                  color: Theme.of(context).primaryColor,
+                ),
                 const SizedBox(width: 5),
                 const Text('Gallery'),
               ],

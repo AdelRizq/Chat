@@ -23,8 +23,10 @@ class _NewMessageState extends State<NewMessage> {
       'username': userData['username'],
       'imageUrl': userData['imageUrl'],
     });
-    _messageController.clear();
-    _typedMessage = '';
+    setState(() {
+      _messageController.clear();
+      _typedMessage = '';
+    });
   }
 
   @override
